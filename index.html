@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>$ whoami</title>
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: #111; /* casual dark gray */
+    font-family: 'Courier New', monospace;
+    color: #00ff7f; /* softer green for casual feel */
+    min-height: 100vh;
+    padding: 20px;
+    overflow-x: hidden;
+    position: relative;
+}
+
+/* Subtle textured background */
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: radial-gradient(rgba(255,255,255,0.02) 1px, transparent 1px);
+    background-size: 20px 20px;
+    z-index: 0;
+    pointer-events: none;
+}
+
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+    opacity: 1;
+    transition: opacity 1s ease-in;
+}
+
+.terminal-window {
+    background: rgba(20, 20, 20, 0.95); /* slightly lighter dark */
+    border: 2px solid #00ff7f;
+    border-radius: 8px;
+    box-shadow: 0 0 20px rgba(0, 255, 127, 0.3);
+    overflow: hidden;
+}
+
+.terminal-header {
+    background: linear-gradient(180deg, #222 0%, #111 100%);
+    padding: 12px 20px;
+    border-bottom: 1px solid #00ff7f;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.terminal-buttons {
+    display: flex;
+    gap: 8px;
+}
+
+.btn {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+.btn-close { background: #ff5f56; }
+.btn-minimize { background: #ffbd2e; }
+.btn-maximize { background: #27c93f; }
+
+.terminal-title {
+    color: #00ff7f;
+    font-size: 12px;
+    margin-left: 10px;
+}
+
+.terminal-body {
+    padding: 30px;
+    line-height: 1.8;
+}
+
+.prompt {
+    color: #7fdfff;
+    font-weight: bold;
+}
+.prompt::before {
+    content: "$ ";
+    color: #ff7fff;
+}
+
+.command-line {
+    margin: 20px 0;
+    padding: 10px;
+    background: rgba(0, 255, 127, 0.05);
+    border-left: 3px solid #ff7fff;
+    transition: all 0.3s ease;
+}
+.command-line:hover {
+    background: rgba(0, 255, 127, 0.1);
+    border-left-color: #00ff7f;
+    transform: translateX(5px);
+}
+
+.output {
+    color: #fff;
+    margin-left: 20px;
+    opacity: 0.9;
+}
+
+.section-title {
+    color: #ff7fff;
+    font-size: 1.3em;
+    margin: 30px 0 15px 0;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    position: relative;
+    padding-left: 15px;
+}
+.section-title::before {
+    content: "▶";
+    position: absolute;
+    left: 0;
+    animation: pulse 1.5s ease-in-out infinite;
+}
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+}
+
+.info-item {
+    margin: 12px 0;
+    padding-left: 30px;
+    position: relative;
+    color: #7fdfff;
+}
+.info-item::before {
+    content: "→";
+    position: absolute;
+    left: 10px;
+    color: #ff7fff;
+}
+
+.label {
+    color: #ffbd2e;
+    font-weight: bold;
+}
+
+.ascii-art {
+    color: #00ff7f;
+    font-size: 10px;
+    line-height: 1;
+    white-space: pre;
+    text-align: center;
+    margin: 20px 0;
+}
+
+/* Blinking cursor */
+.cursor {
+    display: inline-block;
+    width: 8px;
+    height: 16px;
+    background: #00ff7f;
+    animation: blink 1s step-start infinite;
+    margin-left: 2px;
+}
+@keyframes blink { 50% { opacity: 0; } }
+
+a {
+    color: #7fdfff;
+    text-decoration: none;
+    border-bottom: 1px dashed #7fdfff;
+    transition: all 0.3s ease;
+}
+a:hover {
+    color: #ff7fff;
+    border-bottom: 1px solid #ff7fff;
+    text-shadow: 0 0 10px #ff7fff;
+}
+
+.tag {
+    display: inline-block;
+    padding: 2px 8px;
+    background: rgba(255, 0, 255, 0.2);
+    border: 1px solid #ff7fff;
+    border-radius: 3px;
+    font-size: 0.85em;
+    margin: 2px;
+    color: #ff7fff;
+}
+
+@media (max-width: 768px) {
+    .terminal-body { padding: 20px 15px; }
+    .ascii-art { font-size: 8px; }
+}
+</style>
+</head>
+<body>
+<div class="container">
+    <div class="terminal-window">
+        <div class="terminal-header">
+            <div class="terminal-buttons">
+                <div class="btn btn-close"></div>
+                <div class="btn btn-minimize"></div>
+                <div class="btn btn-maximize"></div>
+            </div>
+            <span class="terminal-title">my@portfolio:~</span>
+        </div>
+
+        <div class="terminal-body">
+            <div class="ascii-art">
+  _   _      _ _       
+ | | | | ___| | | ___  
+ | |_| |/ _ \ | |/ _ \ 
+ |  _  |  __/ | | (_) |
+ |_| |_|\___|_|_|\___/ 
+            </div>
+
+            <div class="command-line">
+                <div class="prompt">About me !!!!</div>
+                <div class="output">
+                    Arhan | will graduate in 2028 | Electronics and Telecommunication
+                </div>
+            </div>
+
+            <div class="section-title">/ Philosophy</div>
+            <div class="info-item">
+                <span class="label">statement which i try to follow :</span> "If you dont scarifce fo what you want , what you want will become sacrifice"
+            </div>
+            <div class="info-item">
+                <span class="label">approach:</span> Build, Break, Learn, Repeat
+            </div>
+
+            <div class="section-title">/ Current Status</div>
+            <div class="command-line">
+                
+                <div class="output">
+                    Having fun and worries at the same time right now, doing and building things just for fun.
+                    Huge cricket lover btw, would love to see any finals or knockouts with me specially. Also a Clash Royale player (thinking to make an AI that plays Clash Royale itself ) .
+                </div>
+            </div>
+
+            <div class="section-title">What I am doing currently</div>
+            <div class="info-item">
+                <span class="label">will explore:</span>
+                <span class="tag">PCB designing</span>
+                <span class="tag">open-source</span>
+            </div>
+            <div class="info-item">
+                <span class="label">exploring:</span>
+                <span class="tag">reinforcement learning</span>
+                <span class="tag">open cv</span>
+            </div>
+            <div class="info-item">
+                <span class="label">project did:</span> made Rubik's cube solver | working on prosthetic hand
+            </div>
+            <div class="info-item">
+                <span class="label">want to switch to</span> macOS
+            </div>
+
+            <div class="section-title">/ Tools & Preferences</div>
+            <div class="info-item"><span class="label">editor:</span> VS Code</div>
+            <div class="info-item"><span class="label">fuel:</span> mess ka khana</div>
+            <div class="info-item">
+                <span class="label">passion:</span> Drumming | see my video btw
+                <a href="https://youtu.be/QaedLedDZt0" target="_blank">my personal best drum cover</a>
+                | also finalist of national level solo music competition | made to 
+                brilliant talent discovery awards Singapore but missed somehow :( | tabla visharad | part time keyboardist 
+            </div>
+
+            <div class="section-title">/ Contact</div>
+            <div class="command-line">
+                <div class="prompt">connect with me ~</div>
+                <div class="output">
+                    <div class="info-item">
+                        <span class="label">email:</span> <a href="mailto:arhanjain1606@gmail.com">arhanjain</a>
+                    </div>
+                    <div class="info-item">
+                        <span class="label">github:</span> <a href="https://github.com/Archaive16" target="_blank">Archaive16</a>
+                    </div>
+                    <div class="info-item">
+                        <span class="label">linkedin:</span> <a href="https://www.linkedin.com/in/arhan-chavare-5a23a8334/" target="_blank">Arhan Chavare</a>
+                    </div>
+                    <div class="info-item">
+                        <span class="label">insta:</span> <a href="http://instagram.com/__.arh4n.__/" target="_blank">_.arh4n._</a>
+                    </div>
+                </div>
+            </div>
+
+            <div style="margin-top: 40px; opacity: 0.6; text-align: center;">
+                <span class="prompt">_</span><span class="cursor"></span>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
