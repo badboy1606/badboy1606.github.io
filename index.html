@@ -86,6 +86,31 @@ a {
 a:hover {
     text-shadow: 0 0 8px #ffcc00;
 }
+
+/* ============================= */
+/* 📱 Mobile Responsive Section */
+/* ============================= */
+
+@media (max-width: 768px) {
+
+    .terminal {
+        width: 100%;        /* full width on mobile */
+        right: 0;
+        border-left: none;  /* remove side border */
+        border-top: 2px solid #ffd700; /* top border instead */
+        padding: 15px;
+    }
+
+    input {
+        width: 100%;
+        font-size: 14px;
+    }
+
+    #terminalBody {
+        font-size: 14px;
+    }
+}
+
 </style>
 </head>
 
@@ -117,26 +142,30 @@ philosophy
 interests
 projects
 clear
-cd projects
+sidequests
+cd_projects
     `,
 
-    whoami: "Arhan | Electronics & Telecommunication | 2028",
+    whoami: "Arhan | Electronics & Telecommunication | will graduate in 2028",
 
     philosophy: `"If you don't sacrifice for what you want, what you want becomes the sacrifice."
 Build. Break. Learn. Repeat.`,
 
     interests: `
-reinforcement-learning
+machine learning
 opencv
-pcb-design
+embedded
 open-source
     `,
 
     projects: `
-rubiks_solver
-prosthetic_hand
+rubiks cube solver
+anti drone system
+eog morse code detector
+
 (Type: cd projects to open full page)
     `
+    , sidequests: ` - a music lover , playing tabla from std 2 (2012), playing drums from std 6 (passed trinity college London drum exam grade 6), even part time keyboardist` 
 };
 
 input.addEventListener("keydown", function(e) {
@@ -163,7 +192,7 @@ function executeCommand(command) {
         return;
     }
 
-    if (command === "cd projects") {
+    if (command === "cd_projects") {
         terminalBody.innerHTML += `
         <div class="output-text">Opening projects...</div><br>
         `;
