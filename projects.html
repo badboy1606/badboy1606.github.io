@@ -2,6 +2,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>~/projects</title>
 
 <style>
@@ -10,6 +11,7 @@ body {
     color: #00ff7f;
     font-family: "Courier New", monospace;
     padding: 40px;
+    margin: 0;
 }
 
 .prompt {
@@ -17,13 +19,13 @@ body {
 }
 
 .section {
-    margin: 25px 0;
+    margin: 20px 0;
 }
 
 .project {
     border-left: 3px solid #00ff7f;
     padding-left: 20px;
-    margin-bottom: 40px;
+    margin-bottom: 50px;
 }
 
 .label {
@@ -35,20 +37,70 @@ h2 {
     color: #ff7fff;
 }
 
-a {
+h2 a {
     color: #ff7fff;
     text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+h2 a:hover {
+    color: #ffd700;
+    text-shadow: 0 0 10px #ff7fff;
 }
 
 .cursor {
     display: inline-block;
     width: 8px;
+    height: 16px;
     background: #00ff7f;
     animation: blink 1s infinite;
+    margin-left: 5px;
 }
 
 @keyframes blink {
     50% { opacity: 0; }
+}
+
+.input-line {
+    display: inline;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+    body {
+        padding: 20px;
+        font-size: 14px;
+    }
+
+    .project {
+        padding-left: 15px;
+        margin-bottom: 40px;
+    }
+
+    h2 {
+        font-size: 1.3em;
+        word-wrap: break-word;
+    }
+
+    .section {
+        margin: 15px 0;
+        line-height: 1.6;
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        padding: 15px;
+        font-size: 13px;
+    }
+
+    h2 {
+        font-size: 1.1em;
+    }
+
+    .project {
+        padding-left: 10px;
+    }
 }
 </style>
 </head>
@@ -56,73 +108,171 @@ a {
 <body>
 
 <div class="prompt">arhan@portfolio:~/projects$ ls</div>
+<br><br>
 
-<br>
+<!-- ===================== -->
+<!-- RUBIKNET -->
+<!-- ===================== -->
 
 <div class="project">
-    <h2>Rubik's Cube Solver (RL + ADI)</h2>
+    <h2><a href="https://github.com/badboy1606/Rubiknet" target="_blank">RubikNet — RL Powered Rubik's Cube Solver</a></h2>
 
     <div class="section">
-        <span class="label">Problem:</span>
-        <!-- Write problem statement here -->
+        <span class="label">Overview:</span>
+        Built an intelligent Rubik's Cube solving system integrating Deep Reinforcement Learning,
+        A*, Beam Search, and robotic actuation.
     </div>
 
     <div class="section">
-        <span class="label">Approach:</span>
-        <!-- Explain how you used Autodidactic Iteration -->
+        <span class="label">Core Innovation:</span>
+        Designed a cube simulator and dataset generator in Python to train policy and value
+        networks using Autodidactic Iteration (ADI).
+    </div>
+
+    <div class="section">
+        <span class="label">Performance:</span>
+        Achieved 99% solve accuracy up to 8 scrambles and 80% accuracy for 10–12 scrambles
+        using reward engineering and policy optimization.
+    </div>
+
+    <div class="section">
+        <span class="label">Hardware Integration:</span>
+        Engineered an ESP32-controlled platform using NEMA 17 stepper motors and DRV8825 drivers.
+        Integrated OpenCV-based vision for cube detection and real-time UART communication.
     </div>
 
     <div class="section">
         <span class="label">Tech Stack:</span>
-        <!-- Python, PyTorch, MCTS, ESP32, Stepper Motors -->
-    </div>
-
-    <div class="section">
-        <span class="label">Challenges:</span>
-        <!-- Sparse reward, exploration, hardware latency -->
-    </div>
-
-    <div class="section">
-        <span class="label">Result:</span>
-        <!-- Accuracy, solve time, deployment success -->
+        Python, PyTorch, OpenCV, ESP32, ESP-IDF, DRV8825, NEMA 17, MCTS
     </div>
 </div>
 
+<!-- ===================== -->
+<!-- ANTI DRONE -->
+<!-- ===================== -->
+
 <div class="project">
-    <h2>Prosthetic Hand</h2>
+    <h2><a href="https://github.com/badboy1606/anti_drone" target="_blank">Anti-Drone Detection System (SIH 2025 Finalist)</a></h2>
 
     <div class="section">
-        <span class="label">Problem:</span>
+        <span class="label">Overview:</span>
+        Developed a hybrid drone detection system combining computer vision and RF-based classification.
     </div>
 
     <div class="section">
-        <span class="label">Hardware Used:</span>
+        <span class="label">Vision Pipeline:</span>
+        Built a detection pipeline using OpenCV and the Moondream Vision-Language Model.
+    </div>
+
+    <div class="section">
+        <span class="label">RF Intelligence:</span>
+        Designed a 2.4 GHz RF-based classification algorithm under dense Wi-Fi interference
+        and implemented RF fingerprinting to classify friendly vs hostile UAVs.
+    </div>
+
+    <div class="section">
+        <span class="label">Hardware:</span>
+        Built a 2-DOF pan-tilt tracking system and demonstrated ESP-NOW spoofing concepts.
+    </div>
+
+    <div class="section">
+        <span class="label">Achievement:</span>
+        Smart India Hackathon 2025 Finalist (ITBP Problem Statement).
+    </div>
+</div>
+
+<!-- ===================== -->
+<!-- MORSE CODE -->
+<!-- ===================== -->
+
+<div class="project">
+    <h2><a href="https://github.com/badboy1606/Morse-code-detector" target="_blank">Morse Code Detector using EOG Signals</a></h2>
+
+    <div class="section">
+        <span class="label">Overview:</span>
+        Developed an assistive communication system using Electrooculography (EOG).
+    </div>
+
+    <div class="section">
+        <span class="label">Signal Acquisition:</span>
+        Recorded EOG signals using BioAmp EXG Pill hardware.
     </div>
 
     <div class="section">
         <span class="label">Signal Processing:</span>
+        Detected and classified short and long eye blinks mapped to Morse code.
     </div>
 
     <div class="section">
-        <span class="label">Future Improvements:</span>
+        <span class="label">Interface:</span>
+        Built a Streamlit-based real-time decoding interface in Python.
+    </div>
+</div>
+
+<!-- ===================== -->
+<!-- NEUROGYM -->
+<!-- ===================== -->
+
+<div class="project">
+    <h2>NeuroGym — Reinforcement Learning from Scratch</h2>
+
+    <div class="section">
+        <span class="label">Overview:</span>
+        Implemented foundational Reinforcement Learning algorithms from scratch.
+    </div>
+
+    <div class="section">
+        <span class="label">Algorithms:</span>
+        ϵ-greedy policy, Tabular Q-learning, Dynamic Programming.
+    </div>
+
+    <div class="section">
+        <span class="label">Environments:</span>
+        Solved CartPole, Taxi, Blackjack, MountainCar, LunarLander (OpenAI Gym).
+    </div>
+
+    <div class="section">
+        <span class="label">Deep Learning:</span>
+        Trained CNNs on MNIST & Fashion-MNIST and built a DQN-based autonomous Snake agent.
+        <br>type cd .. to go back <br>
     </div>
 </div>
 
 <br><br>
 
-<div class="prompt">
-arhan@portfolio:~/projects$ cd ..
+<!-- TERMINAL INPUT -->
+<div>
+    <span class="prompt">arhan@portfolio:~/projects$ </span>
+    <span id="typedCommand"></span>
+    <span class="cursor"></span>
 </div>
 
-<br>
+<script>
+let command = "";
+const typed = document.getElementById("typedCommand");
 
-<a href="index.html">← Back to Home</a>
+document.addEventListener("keydown", function(e) {
 
-<br><br>
+    if (e.key.length === 1 && !e.ctrlKey) {
+        command += e.key;
+    }
 
-<div class="prompt">
-arhan@portfolio:~/projects$ <span class="cursor">&nbsp;</span>
-</div>
+    if (e.key === "Backspace") {
+        command = command.slice(0, -1);
+    }
+
+    if (e.key === "Enter") {
+
+        if (command.trim().toLowerCase() === "cd ..") {
+            window.location.href = "index.html";
+        }
+
+        command = "";
+    }
+
+    typed.textContent = command;
+});
+</script>
 
 </body>
 </html>
